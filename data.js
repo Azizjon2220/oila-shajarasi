@@ -42,7 +42,7 @@ const ODAMLAR = [
   { id: 6, ism: "Po'lat", jinsi: "e", farzandi: 1, turmush: "Marhamat", tugilgan: 1925, vafot: 1996 },
 
   // 3-avlod
-  { id: 7, ism: "Baxtiyor", farzandi: 4, turmush: "Karima", tugilgan: 1946, vafot: 1947 },
+  { id: 7, ism: "Baxtiyor", jinsi: "e", farzandi: 4, turmush: "Karima", tugilgan: 1946, vafot: 1947 },
 
   // 4-avlod
   { id: 8, ism: "Dilobar", jinsi: "a", farzandi: 7, turmush: "Qurbonali", tugilgan: 1962 },
@@ -62,7 +62,7 @@ const ODAMLAR = [
   { id: 18, ism: "Izzatbek", jinsi: "e", farzandi: 13, tugilgan: 2017 },
   { id: 19, ism: "Jasurbek", jinsi: "e", farzandi: 13, tugilgan: 2020 },
   { id: 20, ism: "Intizor", jinsi: "a", farzandi: 13, tugilgan: 2024 },
-  { id: 21, ism: "Sardorbek", farzandi: 13, tugilgan: 2025 },
+  { id: 21, ism: "Sardorbek", jinsi: "e", farzandi: 13, tugilgan: 2025 },
   { id: 22, ism: "Soliha", jinsi: "a", farzandi: 14, tugilgan: 2020 },
   { id: 23, ism: "Asilbek", farzandi: 14, tugilgan: 2022 },
   { id: 24, ism: "Xasan", jinsi: "e", farzandi: 15, tugilgan: 2020 },
