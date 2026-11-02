@@ -41,7 +41,27 @@
     </div>
 
     <div id="stats" class="stats" aria-live="polite"></div>
+
+    <button type="button" id="editBtn" class="edit-btn" hidden>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+      <span>Tahrirlash</span>
+    </button>
   </header>
+
+  <div id="editBar" class="editbar" hidden>
+    <span class="eb-title">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+      Tahrirlash
+    </span>
+    <span id="ebStatus" class="eb-status" aria-live="polite"></span>
+    <div class="eb-actions">
+      <button type="button" id="ebClear" class="btn danger" hidden>Namuna ismlarni o'chirish</button>
+      <button type="button" id="ebAddRoot" class="btn">+ Shajara boshi</button>
+      <button type="button" id="ebSettings" class="btn">Sarlavha</button>
+      <button type="button" id="ebExit" class="btn">Chiqish</button>
+      <button type="button" id="ebSave" class="btn primary">Saqlash</button>
+    </div>
+  </div>
 
   <div class="workspace">
     <main id="viewport" class="viewport" aria-label="Shajara daraxti">
@@ -49,6 +69,7 @@
         <svg id="links" class="links" aria-hidden="true"></svg>
         <div id="nodes"></div>
       </div>
+      <div id="empty" class="empty-state" hidden></div>
     </main>
 
     <div id="notice" class="notice" role="status" hidden></div>
@@ -72,6 +93,38 @@
       <div id="panelBody" class="panel-scroll"></div>
     </aside>
   </div>
+
+  <dialog id="tokenDlg" class="dlg" aria-labelledby="tokenTitle">
+    <form id="tokenForm" class="dlg-body">
+      <h2 id="tokenTitle">Tahrirlash kaliti</h2>
+      <p>Saytni faqat siz o'zgartira olishingiz uchun GitHub'dan maxsus <b>kalit</b> olinadi. Bu bir marta qilinadi.</p>
+      <ol>
+        <li><a id="tokenLink" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Shu havolani bosing</a> — GitHub'da kalit yaratish sahifasi ochiladi. Nomi va ruxsati o'zi yozilgan bo'ladi.</li>
+        <li><b>Repository access</b> bo'limida <b>Only select repositories</b> ni bosing va <b>oila-shajarasi</b> ni tanlang.</li>
+        <li>Pastdagi yashil <b>Generate token</b> tugmasini bosing. <b>github_pat_</b> bilan boshlanadigan kalit chiqadi — uni nusxalang.</li>
+        <li>Kalitni shu yerga qo'ying:</li>
+      </ol>
+      <input id="tokenInput" class="inp" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false" aria-label="Kalit">
+      <p id="tokenMsg" class="dlg-msg" role="alert"></p>
+      <p class="dlg-note">Kalit faqat shu brauzerda saqlanadi. Uni hech kimga yubormang.</p>
+      <div class="dlg-actions">
+        <button type="button" id="tokenCancel" class="btn">Bekor qilish</button>
+        <button type="submit" id="tokenOk" class="btn primary">Davom etish</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="setDlg" class="dlg" aria-labelledby="setTitle">
+    <form id="setForm" class="dlg-body">
+      <h2 id="setTitle">Sarlavha</h2>
+      <label class="f"><span>Sayt nomi</span><input id="setNomi" placeholder="Masalan: Baxtiyorovlar shajarasi"></label>
+      <label class="f"><span>Kichik yozuv</span><input id="setTavsif" placeholder="Masalan: Ota-bobolarimiz va avlodlarimiz"></label>
+      <div class="dlg-actions">
+        <button type="button" id="setCancel" class="btn">Bekor qilish</button>
+        <button type="submit" class="btn primary">Tayyor</button>
+      </div>
+    </form>
+  </dialog>
 
   <script src="data.js"></script>
   <script src="app.js"></script>

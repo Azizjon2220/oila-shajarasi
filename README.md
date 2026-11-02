@@ -3,6 +3,18 @@
 Oilamizning shajarasi — ota-bobolarimiz va avlodlarimiz daraxti.
 Sayt hamma uchun ochiq: havolani bilgan har kim telefon yoki kompyuterdan ko'ra oladi.
 
+## Saytning o'zida tahrirlash (eng oson yo'l)
+
+1. Shu manzilni oching: `https://azizjon2220.github.io/oila-shajarasi/?tahrir`
+2. Birinchi marta **kalit** so'raladi. Oynadagi 4 qadamni bajaring (bu bir marta qilinadi).
+3. Istalgan odamni bosing — o'ngda (telefonda pastda) uning ma'lumotlari ochiladi, o'zgartiring.
+   - **+ Farzand qo'shish** — shu odamning farzandini qo'shadi.
+   - **O'chirish** — odamni (va uning avlodlarini) o'chiradi.
+   - **Kimning farzandi** — odamni boshqa ota-onaga ko'chiradi.
+4. Tepadagi **Saqlash** tugmasini bosing. 1–2 daqiqada sayt hammaga yangilanadi.
+
+Kalit saqlangan brauzerda «Tahrirlash» tugmasi saytning o'ng yuqori burchagida doim ko'rinadi.
+
 ## Yangi odam qo'shish (GitHub saytining o'zida)
 
 1. GitHub'da shu loyihani oching va **`data.js`** faylini bosing.
