@@ -28,7 +28,7 @@
   const ICON_RINGS = '<svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6" cy="9" r="3.8"/><circle cx="10" cy="9" r="3.8"/></svg>';
   const ICON_LINK = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 10a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>';
   const ICON_CLOSE = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-  const ICON_QUILL = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C12 4 7 9 6 18"/><path d="M20 4c0 7-5 12-12 13"/><path d="M4 20l2-2"/></svg>';
+  const ICON_QUILL = '<svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C12 4 7 9 6 18"/><path d="M20 4c0 7-5 12-12 13"/><path d="M4 20l2-2"/></svg>';
 
   // ---------- Yordamchi funksiyalar ----------
 
