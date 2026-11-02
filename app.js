@@ -761,6 +761,11 @@
     if (!form || !editing || e.target.name === "farzandi") return;
     const r = recOf(form.dataset.id);
     if (!r) return;
+    // Yil maydoniga faqat raqam (va sana belgilari) yoziladi — "!946" kabi xatolar bo'lmasin
+    if (e.target.name === "tugilgan" || e.target.name === "vafot") {
+      const clean = e.target.value.replace(/[^\d.\-/ ]/g, "");
+      if (clean !== e.target.value) e.target.value = clean;
+    }
     const v = e.target.value.trim();
     if (v) r[e.target.name] = v;
     else delete r[e.target.name];

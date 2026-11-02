@@ -126,7 +126,17 @@
     </form>
   </dialog>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script>
+    // Brauzer eski nusxani eslab qolmasin: har daqiqada yangi manzil bilan yuklaymiz
+    (function () {
+      var v = Math.floor(Date.now() / 60000);
+      ["data.js", "app.js"].forEach(function (src) {
+        var s = document.createElement("script");
+        s.src = src + "?v=" + v;
+        s.async = false;
+        document.body.appendChild(s);
+      });
+    })();
+  </script>
 </body>
 </html>
