@@ -1,15 +1,15 @@
 // =====================================================================
 //  OILA SHAJARASI — MA'LUMOTLAR
-//  Saytdagi barcha ismlar shu faylda turadi. Faqat shu faylni o'zgartirasiz.
+//  Saytdagi barcha ismlar shu faylda turadi.
+//  Saytdagi "Tahrirlash" tugmasi ham shu faylni yozadi.
 // =====================================================================
 
 // Sayt tepasidagi sarlavha va kichik yozuv
 const SHAJARA_NOMI = "Oila shajarasi";
 const SHAJARA_TAVSIF = "Ota-bobolarimiz va avlodlarimiz";
 
-// Hozir pastdagi ismlar — namuna. Haqiqiy ismlarni yozib bo'lgach,
-// true so'zini false ga almashtiring (sayt tepasidagi ogohlantirish yo'qoladi).
-const NAMUNA = true;
+// true bo'lsa, sayt tepasida "namuna ismlar" degan ogohlantirish chiqadi.
+const NAMUNA = false;
 
 // ---------------------------------------------------------------------
 //  ODAMLAR RO'YXATI
@@ -32,25 +32,40 @@ const NAMUNA = true;
 
 const ODAMLAR = [
   // 1-avlod
-  { id: 1, ism: "Abdurahmon", jinsi: "e", turmush: "Oyshabibi", tugilgan: 1912, vafot: 1987, izoh: "Shajaramiz boshi. Bu namuna yozuv." },
+  { id: 1, ism: "Begmad", jinsi: "e", turmush: "Xijji", tugilgan: 1890, vafot: 1940 },
+  { id: 27, ism: "Ziyamad", jinsi: "e", turmush: "Muxabbat", tugilgan: 1868 },
 
-  // 2-avlod — Abdurahmonning farzandlari
-  { id: 2, ism: "Karimjon", jinsi: "e", farzandi: 1, turmush: "Zulfiya", tugilgan: 1938, vafot: 2010 },
-  { id: 3, ism: "Rahimjon", jinsi: "e", farzandi: 1, turmush: "Mohira", tugilgan: 1942, vafot: 2015 },
-  { id: 4, ism: "Saodat", jinsi: "a", farzandi: 1, turmush: "Anvar", tugilgan: 1946 },
+  // 2-avlod
+  { id: 2, ism: "G'ani", jinsi: "e", farzandi: 1, turmush: "Zulfiya", tugilgan: 1915, vafot: 1980 },
+  { id: 4, ism: "Xasan", jinsi: "e", farzandi: 1, turmush: "Toji", tugilgan: 1918, vafot: 2007 },
+  { id: 5, ism: "Xusan", jinsi: "e", farzandi: 1, turmush: "Ra'no", tugilgan: 1918, vafot: 1968 },
+  { id: 6, ism: "Po'lat", jinsi: "e", farzandi: 1, turmush: "Marhamat", tugilgan: 1925, vafot: 1996 },
 
   // 3-avlod
-  { id: 5, ism: "Farhod", jinsi: "e", farzandi: 2, turmush: "Dilnoza", tugilgan: 1968 },
-  { id: 6, ism: "Shoira", jinsi: "a", farzandi: 2, turmush: "Ulug'bek", tugilgan: 1971 },
-  { id: 7, ism: "Jahongir", jinsi: "e", farzandi: 3, turmush: "Nigora", tugilgan: 1970 },
-  { id: 8, ism: "Madina", jinsi: "a", farzandi: 3, tugilgan: 1975 },
-  { id: 9, ism: "Nodira", jinsi: "a", farzandi: 4, turmush: "Sherzod", tugilgan: 1972 },
+  { id: 7, ism: "Baxtiyor", farzandi: 4, turmush: "Karima", tugilgan: "!946", vafot: "!947" },
 
   // 4-avlod
-  { id: 10, ism: "Sardor", jinsi: "e", farzandi: 5, tugilgan: 1996 },
-  { id: 11, ism: "Malika", jinsi: "a", farzandi: 5, tugilgan: 1999 },
-  { id: 12, ism: "Otabek", jinsi: "e", farzandi: 6, tugilgan: 1994 },
-  { id: 13, ism: "Bekzod", jinsi: "e", farzandi: 7, tugilgan: 1995 },
-  { id: 14, ism: "Kamola", jinsi: "a", farzandi: 7, tugilgan: 2001 },
-  { id: 15, ism: "Laylo", jinsi: "a", farzandi: 9, tugilgan: 2000 },
+  { id: 8, ism: "Dilobar", jinsi: "a", farzandi: 7, turmush: "Qurbonali", tugilgan: 1962 },
+  { id: 9, ism: "Nigora", jinsi: "a", farzandi: 7, turmush: "Dilshod", tugilgan: 1965 },
+  { id: 10, ism: "Baxodir", jinsi: "e", farzandi: 7, turmush: "Lobar", tugilgan: 1971 },
+  { id: 11, ism: "Ixtiyor", jinsi: "e", farzandi: 7, turmush: "Fotima", tugilgan: 1973 },
+  { id: 12, ism: "Baxrom", jinsi: "e", farzandi: 7, turmush: "Nazokat", tugilgan: 1977 },
+
+  // 5-avlod
+  { id: 13, ism: "Feruza", jinsi: "a", farzandi: 10, turmush: "Yorqin", tugilgan: 1995 },
+  { id: 14, ism: "Munisa", jinsi: "a", farzandi: 10, turmush: "Samariddin", tugilgan: 1996 },
+  { id: 15, ism: "Sarvinoz", jinsi: "a", farzandi: 10, turmush: "Ravshan", tugilgan: 1999 },
+  { id: 16, ism: "Gulshirin", jinsi: "a", farzandi: 10, turmush: "Murod", tugilgan: 2004 },
+  { id: 17, ism: "Azizjon", jinsi: "e", farzandi: 10, tugilgan: 2008, izoh: "Yaratuvchi" },
+
+  // 6-avlod
+  { id: 18, ism: "Izzatbek", jinsi: "e", farzandi: 13, tugilgan: 2017 },
+  { id: 19, ism: "Jasurbek", jinsi: "e", farzandi: 13, tugilgan: 2020 },
+  { id: 20, ism: "Intizor", jinsi: "a", farzandi: 13, tugilgan: 2024 },
+  { id: 21, ism: "Sardorbek", farzandi: 13, tugilgan: 2025 },
+  { id: 22, ism: "Soliha", jinsi: "a", farzandi: 14, tugilgan: 2020 },
+  { id: 23, ism: "Asilbek", farzandi: 14, tugilgan: 2022 },
+  { id: 24, ism: "Xasan", jinsi: "e", farzandi: 15, tugilgan: 2020 },
+  { id: 25, ism: "Xusan", jinsi: "e", farzandi: 15, tugilgan: 2020 },
+  { id: 26, ism: "Yusuf", jinsi: "e", farzandi: 16, tugilgan: 2025 },
 ];
