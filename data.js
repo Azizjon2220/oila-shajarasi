@@ -42,7 +42,7 @@ const ODAMLAR = [
   { id: 6, ism: "Po'lat", jinsi: "e", farzandi: 1, turmush: "Marhamat", tugilgan: 1925, vafot: 1996 },
 
   // 3-avlod
-  { id: 7, ism: "Baxtiyor", farzandi: 4, turmush: "Karima", tugilgan: "!946", vafot: "!947" },
+  { id: 7, ism: "Baxtiyor", farzandi: 4, turmush: "Karima", tugilgan: 1946, vafot: 1947 },
 
   // 4-avlod
   { id: 8, ism: "Dilobar", jinsi: "a", farzandi: 7, turmush: "Qurbonali", tugilgan: 1962 },
