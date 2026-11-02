@@ -74,6 +74,8 @@
 
     <div id="notice" class="notice" role="status" hidden></div>
 
+    <button type="button" id="credit" class="credit" hidden></button>
+
     <div class="controls" role="group" aria-label="Ko'rinish">
       <button type="button" id="zoomIn" aria-label="Kattalashtirish" title="Kattalashtirish (+)">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
@@ -119,6 +121,8 @@
       <h2 id="setTitle">Sarlavha</h2>
       <label class="f"><span>Sayt nomi</span><input id="setNomi" placeholder="Masalan: Baxtiyorovlar shajarasi"></label>
       <label class="f"><span>Kichik yozuv</span><input id="setTavsif" placeholder="Masalan: Ota-bobolarimiz va avlodlarimiz"></label>
+      <label class="f"><span>Shajarani tuzgan</span><input id="setAuthor" placeholder="Masalan: Azizjon Baxtiyorov"></label>
+      <label class="f"><span>Shajaradagi o'zi (kartasida «Tuzuvchi» belgisi chiqadi)</span><select id="setAuthorId"></select></label>
       <div class="dlg-actions">
         <button type="button" id="setCancel" class="btn">Bekor qilish</button>
         <button type="submit" class="btn primary">Tayyor</button>

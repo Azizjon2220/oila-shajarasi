@@ -11,6 +11,10 @@ const SHAJARA_TAVSIF = "Ota-bobolarimiz va avlodlarimiz";
 // true bo'lsa, sayt tepasida "namuna ismlar" degan ogohlantirish chiqadi.
 const NAMUNA = false;
 
+// Shajarani tuzgan odam: sayt pastida yoziladi, kartasida "Tuzuvchi" belgisi chiqadi.
+//   ism — ko'rsatiladigan ism, id — shajaradagi raqami
+const TUZUVCHI = { ism: "Azizjon Baxtiyorov", id: 17 };
+
 // ---------------------------------------------------------------------
 //  ODAMLAR RO'YXATI
 //

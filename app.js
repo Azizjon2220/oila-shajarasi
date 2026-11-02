@@ -28,6 +28,7 @@
   const ICON_RINGS = '<svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6" cy="9" r="3.8"/><circle cx="10" cy="9" r="3.8"/></svg>';
   const ICON_LINK = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 10a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>';
   const ICON_CLOSE = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  const ICON_QUILL = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C12 4 7 9 6 18"/><path d="M20 4c0 7-5 12-12 13"/><path d="M4 20l2-2"/></svg>';
 
   // ---------- Yordamchi funksiyalar ----------
 
@@ -49,13 +50,19 @@
     try { const v = getter(); return v === undefined ? fallback : v; } catch (e) { return fallback; }
   }
 
+  const normAuthor = (t) =>
+    t && typeof t === "object" && has(t.ism) ? { ism: String(t.ism).trim(), id: has(t.id) ? String(t.id).trim() : "" } : null;
+
   const cfg = {
     nomi: String(read(() => SHAJARA_NOMI, "") || ""),
     tavsif: String(read(() => SHAJARA_TAVSIF, "") || ""),
     namuna: read(() => NAMUNA, false) === true,
+    tuzuvchi: normAuthor(read(() => TUZUVCHI, null)),
   };
   const rawList = read(() => ODAMLAR, null);
   let records = [];
+
+  const isAuthor = (p) => !!cfg.tuzuvchi && cfg.tuzuvchi.id === p.id;
 
   function applyCfg() {
     const nomi = has(cfg.nomi) ? cfg.nomi : "Oila shajarasi";
@@ -63,6 +70,10 @@
     document.title = nomi;
     $("subtitle").textContent = cfg.tavsif;
     $("subtitle").hidden = !has(cfg.tavsif);
+
+    const credit = $("credit");
+    credit.hidden = !cfg.tuzuvchi;
+    if (cfg.tuzuvchi) credit.innerHTML = `${ICON_QUILL}<span>Shajarani tuzgan: <b>${esc(cfg.tuzuvchi.ism)}</b></span>`;
   }
 
   // ---------- Ma'lumotlarni tayyorlash ----------
@@ -215,10 +226,12 @@
     if (p.jinsi === "e" || p.jinsi === "a") card.classList.add("g-" + p.jinsi);
     if (p.vafot) card.classList.add("deceased");
     if (p.blank) card.classList.add("blank");
+    if (isAuthor(p)) card.classList.add("author");
     if (lin.has(p.id)) card.classList.add(p.id === selectedId ? "selected" : "lineage");
     const years = yearsText(p);
-    card.title = [p.ism, p.turmush && "Turmush o'rtog'i: " + p.turmush, years].filter(Boolean).join("\n");
+    card.title = [p.ism, p.turmush && "Turmush o'rtog'i: " + p.turmush, years, isAuthor(p) && "Shajarani tuzgan"].filter(Boolean).join("\n");
     card.innerHTML =
+      (isAuthor(p) ? `<span class="author-tag">Tuzuvchi</span>` : "") +
       `<span class="name">${esc(p.ism)}</span>` +
       (p.turmush ? `<span class="spouse">${ICON_RINGS}<span>${esc(p.turmush)}</span></span>` : "") +
       (years ? `<span class="years">${esc(years)}</span>` : "");
@@ -500,6 +513,7 @@
 
     return `<div class="p-gen">${p.depth + 1}-avlod</div>` +
       `<h2 class="p-name">${esc(p.ism)}</h2>` +
+      (isAuthor(p) ? `<p class="p-author">${ICON_QUILL}Shajarani tuzgan</p>` : "") +
       (p.turmush ? `<p class="p-spouse">${ICON_RINGS}<span>Turmush o'rtog'i: <b>${esc(p.turmush)}</b></span></p>` : "") +
       (facts.length ? `<dl class="p-facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : "") +
       (p.izoh ? `<p class="p-note">${esc(p.izoh)}</p>` : "") +
@@ -836,6 +850,7 @@
   nomi: typeof SHAJARA_NOMI !== "undefined" ? SHAJARA_NOMI : "",
   tavsif: typeof SHAJARA_TAVSIF !== "undefined" ? SHAJARA_TAVSIF : "",
   namuna: typeof NAMUNA !== "undefined" && NAMUNA === true,
+  tuzuvchi: typeof TUZUVCHI !== "undefined" ? TUZUVCHI : null,
 };`)();
   }
 
@@ -896,6 +911,10 @@ const SHAJARA_TAVSIF = ${txt(cfg.tavsif || "")};
 // true bo'lsa, sayt tepasida "namuna ismlar" degan ogohlantirish chiqadi.
 const NAMUNA = ${cfg.namuna ? "true" : "false"};
 
+// Shajarani tuzgan odam: sayt pastida yoziladi, kartasida "Tuzuvchi" belgisi chiqadi.
+//   ism — ko'rsatiladigan ism, id — shajaradagi raqami
+const TUZUVCHI = ${cfg.tuzuvchi ? `{ ism: ${txt(cfg.tuzuvchi.ism)}${has(cfg.tuzuvchi.id) ? `, id: ${lit(cfg.tuzuvchi.id)}` : ""} }` : "null"};
+
 // ---------------------------------------------------------------------
 //  ODAMLAR RO'YXATI
 //
@@ -947,8 +966,14 @@ ${lines.join("\n")}
 
       let draft = null;
       try { draft = JSON.parse(store.get(DRAFT_KEY) || "null"); } catch (err) { draft = null; }
-      if (draft && draft.sha === file.sha && Array.isArray(draft.records)) {
+      // Saqlanmagan o'zgarishlar bo'lsa — fayl boshqa joyda o'zgargan bo'lsa ham, so'rab tiklaymiz
+      const useDraft = draft && Array.isArray(draft.records) && (draft.sha === file.sha || confirm(
+        "Oldingi saqlanmagan o'zgarishlaringiz bor, lekin shajara boshqa joyda ham o'zgargan.\n\n" +
+        "OK — sizning o'zgarishlaringiz tiklanadi (saqlasangiz, boshqa joydagi o'zgarish ularning ostida qoladi).\n" +
+        "Bekor qilish — GitHub'dagi eng yangi holat ochiladi."));
+      if (useDraft) {
         records = draft.records;
+        cfg.tuzuvchi = normAuthor(data.tuzuvchi);
         Object.assign(cfg, draft.cfg);
         dirty = true;
       } else {
@@ -956,6 +981,7 @@ ${lines.join("\n")}
         cfg.nomi = String(data.nomi || "");
         cfg.tavsif = String(data.tavsif || "");
         cfg.namuna = data.namuna;
+        cfg.tuzuvchi = normAuthor(data.tuzuvchi);
         dirty = false;
         store.del(DRAFT_KEY);
       }
@@ -1048,15 +1074,27 @@ ${lines.join("\n")}
   $("ebSettings").addEventListener("click", () => {
     $("setNomi").value = cfg.nomi;
     $("setTavsif").value = cfg.tavsif;
+    $("setAuthor").value = cfg.tuzuvchi ? cfg.tuzuvchi.ism : "";
+    const authorId = cfg.tuzuvchi ? cfg.tuzuvchi.id : "";
+    $("setAuthorId").innerHTML = `<option value="">— Tanlanmagan</option>` + [...people.values()].map((o) =>
+      `<option value="${esc(o.id)}"${o.id === authorId ? " selected" : ""}>${esc(o.ism)} · ${o.depth + 1}-avlod</option>`).join("");
     setDlg.showModal();
   });
   $("setForm").addEventListener("submit", (e) => {
     e.preventDefault();
     cfg.nomi = $("setNomi").value.trim();
     cfg.tavsif = $("setTavsif").value.trim();
+    const author = $("setAuthor").value.trim();
+    cfg.tuzuvchi = author ? { ism: author, id: $("setAuthorId").value } : null;
     applyCfg();
+    render();
     setDlg.close();
     changed();
+  });
+
+  // Pastdagi "Shajarani tuzgan" yozuvi bosilsa — o'sha odamning kartasi ochiladi
+  $("credit").addEventListener("click", () => {
+    if (cfg.tuzuvchi && people.has(cfg.tuzuvchi.id)) select(cfg.tuzuvchi.id, { center: true, zoom: true });
   });
   $("setCancel").addEventListener("click", () => setDlg.close());
 

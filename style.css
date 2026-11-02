@@ -15,6 +15,7 @@
   --accent-ink: #ffffff;
   --accent-soft: rgba(30, 90, 72, 0.12);
   --gold: #9b7222;
+  --gold-soft: rgba(155, 114, 34, 0.13);
   --male: #3b6f93;
   --female: #b05a73;
   --danger: #b4432f;
@@ -40,6 +41,7 @@
     --accent-ink: #0f1d17;
     --accent-soft: rgba(108, 195, 160, 0.14);
     --gold: #d8b25c;
+    --gold-soft: rgba(216, 178, 92, 0.15);
     --male: #6fa2c8;
     --female: #d68aa1;
     --danger: #ec7d68;
@@ -296,6 +298,23 @@ button { font: inherit; color: inherit; }
 .card.g-e::before { background: var(--male); }
 .card.g-a::before { background: var(--female); }
 .card.deceased { background: var(--surface-2); }
+.card.author { border-color: var(--gold); }
+.card.author .name { padding-right: 70px; }
+
+.author-tag {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 9.5px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 .card:hover {
   transform: translateY(-2px);
@@ -470,6 +489,53 @@ button { font: inherit; color: inherit; }
 .notice-close:hover { background: var(--accent-soft); color: var(--ink); }
 .notice-close svg { width: 16px; height: 16px; }
 
+/* ---------- Tuzuvchi yozuvi ---------- */
+
+.credit {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 96px);
+  padding: 9px 15px 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.credit[hidden] { display: none; }
+.credit:hover { border-color: var(--gold); }
+.credit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.credit b { color: var(--ink); font-weight: 700; }
+
+.credit svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+}
+
+.credit span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1000px) {
+  body.panel-open .credit {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
 /* ---------- Boshqaruv tugmalari ---------- */
 
 .controls {
@@ -578,6 +644,21 @@ body.panel-open .controls { right: 388px; }
   font-size: 14.5px;
   color: var(--muted);
 }
+
+.p-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 4px 11px 4px 9px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.p-author svg { width: 14px; height: 14px; }
 
 .p-spouse b { color: var(--ink); font-weight: 650; }
 .p-spouse .ico { width: 16px; height: 16px; }
