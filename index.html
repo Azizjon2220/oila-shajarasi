@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Oila shajarasi</title>
+  <meta name="description" content="Oilamiz shajarasi — ota-bobolarimiz va avlodlarimiz daraxti.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%231e5a48' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6.5' r='3.5'/%3E%3Cpath d='M16 10v4.5M8 19.5v-2.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.5'/%3E%3Ccircle cx='8' cy='23' r='3.5'/%3E%3Ccircle cx='24' cy='23' r='3.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // data.js da xato bo'lsa, qaysi qatorda ekanini eslab qolamiz
+    window.__dataErr = null;
+    addEventListener("error", function (e) {
+      if (e.filename && /data\.js/.test(e.filename)) window.__dataErr = { line: e.lineno, msg: e.message };
+    });
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark i" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="6.5" r="3.5"/>
+        <path d="M16 10v4.5M8 19.5v-2.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.5"/>
+        <circle cx="8" cy="23" r="3.5"/>
+        <circle cx="24" cy="23" r="3.5"/>
+      </svg>
+      <div class="brand-text">
+        <h1 id="title">Oila shajarasi</h1>
+        <p id="subtitle" class="subtitle"></p>
+      </div>
+    </div>
+
+    <div class="search">
+      <svg class="ico-search i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Ismni qidiring…" autocomplete="off" spellcheck="false"
+             role="combobox" aria-label="Ism bo'yicha qidirish" aria-controls="results" aria-expanded="false" aria-autocomplete="list">
+      <ul id="results" class="results" role="listbox" hidden></ul>
+    </div>
+
+    <div id="stats" class="stats" aria-live="polite"></div>
+  </header>
+
+  <div class="workspace">
+    <main id="viewport" class="viewport" aria-label="Shajara daraxti">
+      <div id="stage" class="stage">
+        <svg id="links" class="links" aria-hidden="true"></svg>
+        <div id="nodes"></div>
+      </div>
+    </main>
+
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <div class="controls" role="group" aria-label="Ko'rinish">
+      <button type="button" id="zoomIn" aria-label="Kattalashtirish" title="Kattalashtirish (+)">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button type="button" id="zoomOut" aria-label="Kichiklashtirish" title="Kichiklashtirish (−)">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+      </button>
+      <button type="button" id="fit" aria-label="Hammasini ko'rish" title="Hammasini ko'rish (0)">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+    </div>
+
+    <aside id="panel" class="panel" aria-label="Shaxs haqida" aria-hidden="true">
+      <button type="button" id="panelClose" class="panel-close" aria-label="Yopish">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div id="panelBody" class="panel-scroll"></div>
+    </aside>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
