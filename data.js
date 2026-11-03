@@ -37,7 +37,6 @@ const TUZUVCHI = { ism: "Azizjon Baxtiyorov", id: 17 };
 const ODAMLAR = [
   // 1-avlod
   { id: 1, ism: "Begmad", jinsi: "e", turmush: "Xijji", tugilgan: 1890, vafot: 1940 },
-  { id: 27, ism: "Ziyamad", jinsi: "e", turmush: "Muxabbat", tugilgan: 1868 },
 
   // 2-avlod
   { id: 2, ism: "G'ani", jinsi: "e", farzandi: 1, turmush: "Zulfiya", tugilgan: 1915, vafot: 1980 },
@@ -56,11 +55,19 @@ const ODAMLAR = [
   { id: 12, ism: "Baxrom", jinsi: "e", farzandi: 7, turmush: "Nazokat", tugilgan: 1977 },
 
   // 5-avlod
+  { id: 33, ism: "Xursan", farzandi: 8, tugilgan: 1980 },
+  { id: 34, ism: "Abdulaziz", jinsi: "e", farzandi: 9, tugilgan: 2000 },
   { id: 13, ism: "Feruza", jinsi: "a", farzandi: 10, turmush: "Yorqin", tugilgan: 1995 },
   { id: 14, ism: "Munisa", jinsi: "a", farzandi: 10, turmush: "Samariddin", tugilgan: 1996 },
   { id: 15, ism: "Sarvinoz", jinsi: "a", farzandi: 10, turmush: "Ravshan", tugilgan: 1999 },
   { id: 16, ism: "Gulshirin", jinsi: "a", farzandi: 10, turmush: "Murod", tugilgan: 2004 },
   { id: 17, ism: "Azizjon", jinsi: "e", farzandi: 10, tugilgan: 2008, izoh: "Yaratuvchi" },
+  { id: 27, ism: "Elyor", jinsi: "e", farzandi: 11, tugilgan: 1995 },
+  { id: 28, ism: "Maaftuna", jinsi: "a", farzandi: 11, tugilgan: 1996 },
+  { id: 29, ism: "Doniyor", jinsi: "e", farzandi: 11, tugilgan: 2003 },
+  { id: 30, ism: "Jasur", jinsi: "e", farzandi: 12, tugilgan: 2001 },
+  { id: 31, ism: "Jahongir", jinsi: "e", farzandi: 12, tugilgan: 2003 },
+  { id: 32, ism: "Javohir", jinsi: "e", farzandi: 12, tugilgan: 2007 },
 
   // 6-avlod
   { id: 18, ism: "Izzatbek", jinsi: "e", farzandi: 13, tugilgan: 2017 },
@@ -68,7 +75,7 @@ const ODAMLAR = [
   { id: 20, ism: "Intizor", jinsi: "a", farzandi: 13, tugilgan: 2024 },
   { id: 21, ism: "Sardorbek", jinsi: "e", farzandi: 13, tugilgan: 2025 },
   { id: 22, ism: "Soliha", jinsi: "a", farzandi: 14, tugilgan: 2020 },
-  { id: 23, ism: "Asilbek", farzandi: 14, tugilgan: 2022 },
+  { id: 23, ism: "Asilbek", jinsi: "e", farzandi: 14, tugilgan: 2022 },
   { id: 24, ism: "Xasan", jinsi: "e", farzandi: 15, tugilgan: 2020 },
   { id: 25, ism: "Xusan", jinsi: "e", farzandi: 15, tugilgan: 2020 },
   { id: 26, ism: "Yusuf", jinsi: "e", farzandi: 16, tugilgan: 2025 },
